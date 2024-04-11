@@ -28,6 +28,6 @@ function mining {
 
 export -f mining
 
-parallel --delay 20 -j $totalWallets mining ::: $rpcFile ::: $threads ::: "${wallets[@]}"
+parallel --delay 30 -j $totalWallets mining ::: $rpcFile ::: $threads ::: "${wallets[@]}"
 
 echo "Running $totalWallets wallets with $threads threads each Done."
