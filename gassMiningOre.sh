@@ -21,7 +21,7 @@ function mining {
   for i in $(seq 1 $threads); do
     fileName=$(basename $wallet)
     echo "Mining wallet $wallet thread $i | to check the progress run: screen -r $fileName-$i" | tee -a ~/ore.log
-    echo "screen -dmS $fileName-$i runOre $wallet $rpcFile"
+    screen -dmS $fileName-$i runOre $wallet $rpcFile
     sleep 60
   done
 }
