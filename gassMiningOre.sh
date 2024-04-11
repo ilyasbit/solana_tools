@@ -18,9 +18,9 @@ function mining {
   rpcFile=$2
   threads=$3
   for i in $(seq 1 $threads); do
-    echo "Mining wallet $wallet thread $i | to check the progress run: screen -r $fileName-$i"
     fileName=$(basename $wallet)
-    screen -dmS $fileName-$i runOre $wallet $rpcFile
+    echo "Mining wallet $wallet thread $i | to check the progress run: screen -r $fileName-$i"
+    echo "screen -dmS $fileName-$i runOre $wallet $rpcFile"
     sleep 3
   done
 }
