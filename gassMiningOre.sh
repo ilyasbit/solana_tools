@@ -21,12 +21,12 @@ function mining {
     fileName=$(basename $wallet)
     echo "Mining wallet $wallet thread $i | to check the progress run: screen -r $fileName-$i" >>~/mining.log
     echo "screen -dmS $fileName-$i runOre $wallet $rpcFile"
-    sleep 3
+    sleep 60
   done
 }
 
 export -f mining
 
-parallel --delay 10 -j $totalWallets mining ::: $rpcFile ::: $threads ::: "${wallets[@]}"
+parallel --delay 30 -j $totalWallets mining ::: $rpcFile ::: $threads ::: "${wallets[@]}"
 
 echo "Running $totalWallets wallets with $threads threads each Done."
