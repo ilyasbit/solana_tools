@@ -14,12 +14,12 @@ if ! [ -x "$(command -v runOre)" ]; then
 fi
 
 function mining {
-  wallet=$1
-  rpcFile=$2
-  threads=$3
+  rpcFile=$1
+  threads=$2
+  wallet=$3
   for i in $(seq 1 $threads); do
     fileName=$(basename $wallet)
-    echo "Mining wallet $wallet thread $i | to check the progress run: screen -r $fileName-$i"
+    echo "Mining wallet $wallet thread $i | to check the progress run: screen -r $fileName-$i" >>~/mining.log
     echo "screen -dmS $fileName-$i runOre $wallet $rpcFile"
     sleep 3
   done
@@ -27,6 +27,6 @@ function mining {
 
 export -f mining
 
-parallel --delay 10 -j $totalWallets mining ::: "${wallets[@]} $rpcFile $threads"
+parallel --delay 10 -j $totalWallets mining ::: $rpcFile ::: $threads ::: "${wallets[@]}"
 
 echo "Running $totalWallets wallets with $threads threads each Done."
